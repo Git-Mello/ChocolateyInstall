@@ -1,0 +1,21 @@
+# Check if your PowerShell is Unrestriced or accepting AllAsigned
+Get-ExecutionPolicy
+
+# if it is not Unrestriced or AllAsigned
+Set-ExecutionPolicy AllSigned 
+
+# install Chocolatey
+Set-ExecutionPolicy Bypass -Scope Process -Force; `
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
+iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+# Open a new Power Shell and test Chocolatey
+choco -h
+
+# Install Amazon Corretto JDK 17
+choco install corretto17jdk
+
+# Install Maven 3.8
+choco install maven
+
+# Remeber to open a new Power Shell session to reload settings on PATH and other ENV variables
